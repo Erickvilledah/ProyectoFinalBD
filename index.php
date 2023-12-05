@@ -69,6 +69,32 @@ $dir = "posters/";
             unset($_SESSION['msg']);
         } ?>
 
+    <br>
+    <header>
+        <h3>Buscador:</h3>
+    </header>
+    <form action="#" method="GET">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Buscar película por ID, nombre o género" aria-label="Buscar película" aria-describedby="basic-addon2" name="search">
+        <button type="submit" class="btn btn-outline-primary" id="basic-addon2">Buscar</button>
+    </div>
+    </form>
+    <?php
+        if (isset($_GET['search'])) {
+            $search = $_GET['search'];
+            $sqlPeliculas = "SELECT p.id, p.nombre, p.descripcion, g.nombre AS genero FROM pelicula AS p
+            INNER JOIN genero AS g ON p.id_genero=g.id
+            WHERE p.id LIKE '%$search%' OR p.nombre LIKE '%$search%' OR g.nombre LIKE '%$search%'";
+            $peliculas = $conn->query($sqlPeliculas);
+        } else {
+            $sqlPeliculas = "SELECT p.id, p.nombre, p.descripcion, g.nombre AS genero FROM pelicula AS p
+            INNER JOIN genero AS g ON p.id_genero=g.id";
+            $peliculas = $conn->query($sqlPeliculas);
+        }
+    ?>
+
+
+        <br>
         <div class="row justify-content-end">
             <div class="col-auto">
                 <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevoModal"><i class="fa-solid fa-circle-plus"></i> Nuevo registro</a>

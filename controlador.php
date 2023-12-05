@@ -5,7 +5,7 @@
 if (!empty($_POST["btningr"])) {
 
     if (empty($_POST["user"]) || empty($_POST["pass"])) {
-        echo '<div class="alert alert-primary" role="alert">Los Acceso denegado. LOS CAMPOS ESTAN VACIOS.</div>';
+        echo '<div class="alert alert-primary" role="alert">Acceso denegado. LOS CAMPOS ESTAN VACIOS.</div>';
     } else {
 
         $usuario = $_POST["user"];
